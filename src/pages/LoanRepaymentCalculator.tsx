@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import LoanForm from "../components/LoanForm";
 import LoanResults from "../components/LoanResults";
-import "../../iframe-resizer.child.js";
+
 
 interface LoanDetails {
   monthlyPayment: number;
