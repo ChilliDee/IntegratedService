@@ -1,6 +1,6 @@
-import React, { useState, useMemo } from 'react';
-import LoanForm from '../components/LoanForm';
-import LoanResults from '../components/LoanResults';
+import React, { useState, useMemo } from "react";
+import LoanForm from "../components/LoanForm";
+import LoanResults from "../components/LoanResults";
 import "@iframe-resizer/child";
 
 interface LoanDetails {
@@ -25,21 +25,27 @@ function calculateLoanDetails(
 
   const monthlyRate = interestRate / 100 / 12;
   const totalMonths = Math.floor(loanTerm * 12);
-  const monthlyPayment = (loanAmount * monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) / 
+  const monthlyPayment =
+    (loanAmount * monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) /
     (Math.pow(1 + monthlyRate, totalMonths) - 1);
-  
+
   let remainingBalance = loanAmount;
   let totalInterest = 0;
-  const amortizationSchedule = [{
-    month: 0,
-    principalBalance: loanAmount,
-    interestPaid: 0,
-  }];
+  const amortizationSchedule = [
+    {
+      month: 0,
+      principalBalance: loanAmount,
+      interestPaid: 0,
+    },
+  ];
 
   for (let month = 1; month <= totalMonths; month++) {
     const interestPayment = remainingBalance * monthlyRate;
-    const principalPayment = Math.min(monthlyPayment + extraPayment - interestPayment, remainingBalance);
-    
+    const principalPayment = Math.min(
+      monthlyPayment + extraPayment - interestPayment,
+      remainingBalance
+    );
+
     totalInterest += interestPayment;
     remainingBalance = Math.max(0, remainingBalance - principalPayment);
 
@@ -52,7 +58,8 @@ function calculateLoanDetails(
     if (remainingBalance === 0) break;
   }
 
-  const actualMonths = amortizationSchedule[amortizationSchedule.length - 1].month;
+  const actualMonths =
+    amortizationSchedule[amortizationSchedule.length - 1].month;
 
   return {
     monthlyPayment: monthlyPayment + extraPayment,
@@ -70,12 +77,13 @@ export default function LoanRepaymentCalculator() {
   const [extraPayment, setExtraPayment] = useState(0);
 
   const loanDetails = useMemo(
-    () => calculateLoanDetails(loanAmount, interestRate, loanTerm, extraPayment),
+    () =>
+      calculateLoanDetails(loanAmount, interestRate, loanTerm, extraPayment),
     [loanAmount, interestRate, loanTerm, extraPayment]
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="h-auto bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-3xl font-bold text-[#074424] text-center mb-8 font-unbounded">
           Loan Repayment Calculator
