@@ -1,8 +1,14 @@
 import { BrowserRouter } from "react-router-dom";
 import AppRoutes from "./routes";
-import "../iframe-resizer.child.js";
+import ChildIframeResizer from "./IframeScripts/childIframeScript";
+import { useEffect } from "react";
 
 function App() {
+  useEffect(() => {
+    const childIframeResizer: ChildIframeResizer = new ChildIframeResizer();
+    childIframeResizer.subscribeToDimensionResize();
+  }, []);
+
   return (
     <BrowserRouter>
       <AppRoutes />
