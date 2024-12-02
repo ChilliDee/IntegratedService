@@ -1,0 +1,59 @@
+.container {
+  min-height: 100vh;
+  background-image: linear-gradient(to bottom right, rgb(243 244 246), rgb(229 231 235));
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Como', sans-serif;
+}
+
+.formContainer {
+  width: 100%;
+  max-width: 36rem;
+  background-color: rgb(255 255 255 / 0.8);
+  backdrop-filter: blur(4px);
+  border-radius: 1.5rem;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  padding: 2rem;
+}
+
+.header {
+  text-align: center;
+}
+
+.title {
+  font-size: 33px;
+  font-weight: 300;
+  color: rgb(55 65 81);
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: rgb(75 85 99);
+}
+
+.form {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 1rem;
+  background-color: #f15a3b;
+  color: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  transition: background-color 200ms;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.submitButton:hover {
+  background-color: #d94c2f;
+}

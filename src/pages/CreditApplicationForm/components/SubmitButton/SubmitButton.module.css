@@ -1,0 +1,10 @@
+.button {
+  @apply w-full p-4 bg-[#f15a3b] text-white rounded-xl shadow-sm 
+         hover:bg-[#d94c2f] transition-colors duration-200
+         inline-flex items-center justify-center gap-2
+         disabled:opacity-70 disabled:cursor-not-allowed;
+}
+
+.label {
+  @apply text-lg font-medium;
+}

@@ -1,0 +1,32 @@
+.container {
+  @apply h-auto bg-gray-50 py-8 px-4 sm:px-6 lg:px-8;
+}
+
+.wrapper {
+  @apply max-w-7xl mx-auto;
+}
+
+.title {
+  @apply text-3xl font-bold text-[#074424] text-center mb-8 font-unbounded;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .formColumn {
+    grid-column: span 4 / span 4;
+  }
+
+  .resultsColumn {
+    grid-column: span 8 / span 8;
+  }
+}

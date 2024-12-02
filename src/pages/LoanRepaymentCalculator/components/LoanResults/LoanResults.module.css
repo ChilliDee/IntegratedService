@@ -1,0 +1,48 @@
+.container {
+  @apply bg-white rounded-xl p-6 shadow-sm border border-gray-100;
+}
+
+.title {
+  @apply text-xl text-gray-800 font-bold mb-6 font-sans;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.card {
+  @apply bg-green-50/80 rounded-lg p-4;
+}
+
+.cardHeader {
+  @apply flex items-center gap-2 mb-3;
+}
+
+.cardIcon {
+  @apply w-5 h-5 text-[#218C43];
+}
+
+.cardTitle {
+  @apply text-sm text-gray-600;
+}
+
+.cardValue {
+  @apply text-xl font-bold text-gray-800;
+}
+
+.cardSubtext {
+  @apply text-sm text-gray-500 mt-1;
+}
+
+.chartContainer {
+  @apply w-full h-[400px];
+}

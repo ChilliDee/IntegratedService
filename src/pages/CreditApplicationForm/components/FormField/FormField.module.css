@@ -1,0 +1,39 @@
+.container {
+  @apply relative;
+}
+
+.prefix {
+  @apply absolute inset-y-0 left-4 flex items-center pointer-events-none;
+}
+
+.prefixText {
+  @apply text-gray-500 text-lg;
+}
+
+.input {
+  @apply w-full p-4 bg-white rounded-2xl shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+.inputError {
+  @apply ring-2 ring-red-500;
+}
+
+.inputWithPrefix {
+  @apply pl-8;
+}
+
+.inputWithSuffix {
+  @apply pr-24;
+}
+
+.suffix {
+  @apply absolute inset-y-0 right-4 flex items-center pointer-events-none;
+}
+
+.suffixText {
+  @apply text-gray-500;
+}
+
+.error {
+  @apply text-red-500 text-sm mt-1 ml-4;
+}
