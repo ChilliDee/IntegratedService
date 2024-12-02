@@ -11,7 +11,7 @@ export const creditApplicationService = {
   async getFormOptions(): Promise<AppFormOptions> {
     try {
       const response = await axios.get<AppFormOptions>(
-        `${API_BASE_URL}/api/CcAppForm/get-cc-app-form-options`
+        `${API_BASE_URL}/api/CcAppForm/options`
       );
       return response.data;
     } catch (error) {
@@ -24,10 +24,7 @@ export const creditApplicationService = {
 
   async submitApplication(data: CreditApplicationSubmitDTO): Promise<void> {
     try {
-      await axios.post(
-        `${API_BASE_URL}/api/CcAppForm/submit-cc-app-form`,
-        data
-      );
+      await axios.post(`${API_BASE_URL}/api/CcAppForm/submit`, data);
     } catch (error) {
       throw new Error();
     }
