@@ -1,5 +1,6 @@
-import React, { InputHTMLAttributes } from 'react';
-import styles from './FormField.module.css';
+import React, { InputHTMLAttributes } from "react";
+import styles from "./FormField.module.css";
+import { formatNumber } from "chart.js/helpers";
 
 interface FormFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -9,13 +10,13 @@ interface FormFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: boolean;
 }
 
-export function FormField({ 
-  label, 
-  prefix, 
-  showLabelAfterValue, 
+export function FormField({
+  label,
+  prefix,
+  showLabelAfterValue,
   suffixLabel,
   error,
-  ...props 
+  ...props
 }: FormFieldProps) {
   return (
     <div className={styles.container}>
@@ -29,9 +30,9 @@ export function FormField({
         placeholder={label}
         className={`
           ${styles.input}
-          ${error ? styles.inputError : ''}
-          ${prefix ? styles.inputWithPrefix : ''} 
-          ${showLabelAfterValue && props.value ? styles.inputWithSuffix : ''}
+          ${error ? styles.inputError : ""}
+          ${prefix ? styles.inputWithPrefix : ""} 
+          ${showLabelAfterValue && props.value ? styles.inputWithSuffix : ""}
         `}
       />
       {showLabelAfterValue && props.value && (
@@ -39,9 +40,7 @@ export function FormField({
           <span className={styles.suffixText}>{suffixLabel}</span>
         </div>
       )}
-      {error && (
-        <p className={styles.error}>Required</p>
-      )}
+      {error && <p className={styles.error}>Required</p>}
     </div>
   );
 }

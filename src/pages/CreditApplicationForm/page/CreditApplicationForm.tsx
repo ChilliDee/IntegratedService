@@ -6,6 +6,9 @@ import styles from "./CreditApplicationForm.module.css";
 import { AppFormOption } from "../types/dto/appFormOptionDTO";
 import { useSubmitApplication } from "../hooks/useSubmitApplication";
 import { SubmitButton } from "../components/SubmitButton/SubmitButton";
+import { ErrorMessage } from "../components/ErrorMessage/ErrorMessage";
+import { SuccessMessage } from "../components/SuccessMessage/SuccessMessage";
+import { formatNumber } from "../utilities/formatNumber";
 
 export default function CreditApplicationForm() {
   const { data: formOptions } = useFormOptions();
@@ -26,6 +29,11 @@ export default function CreditApplicationForm() {
   const [mobile, setMobile] = useState<string>("");
   const [postCode, setPostCode] = useState<string>("");
   const [submitted, setSubmitted] = useState(false);
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [isFailure, setIsFailure] = useState<boolean>(false);
+  const [loanAmount, setLoanAmount] = useState<string>("");
+  const [debtAmount, setDebtAmount] = useState<string>("");
+  const [showDebtAmount, setShowDebtAmount] = useState<boolean>(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,13 +51,12 @@ export default function CreditApplicationForm() {
           postCode,
         },
         {
-          onSuccess: (response) => {
-            console.log("Application submitted successfully:", response);
+          onSuccess: () => {
+            setIsSuccess(true);
             // Handle success (e.g., show success message, redirect)
           },
-          onError: (error) => {
-            console.error("Error submitting application:", error);
-            // Handle error (e.g., show error message)
+          onError: () => {
+            setIsFailure(true); // Handle error (e.g., show error message)
           },
         }
       );
@@ -64,11 +71,16 @@ export default function CreditApplicationForm() {
     if (!email) return false;
     if (!mobile) return false;
     if (!postCode) return false;
+    if (loanAmount == "0") return false;
     return true;
   };
 
   const showError = (field: string, value: any) => {
     return submitted && !value;
+  };
+
+  const toggleDebtAmount = () => {
+    if (loanAmount !== "" && selectedGoal.id == 3) setShowDebtAmount(true);
   };
 
   // if (isLoading) {
@@ -88,6 +100,27 @@ export default function CreditApplicationForm() {
   //     </div>
   //   );
   // }
+
+  if (isFailure) {
+    return (
+      <div className={styles.container}>
+        <ErrorMessage
+          onRetry={() => {
+            setIsFailure(false);
+            setSubmitted(false);
+          }}
+        />
+      </div>
+    );
+  }
+
+  if (isSuccess) {
+    return (
+      <div className={styles.container}>
+        <SuccessMessage />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>
@@ -131,6 +164,30 @@ export default function CreditApplicationForm() {
               error={showError("otherGoal", otherGoal)}
             />
           )}
+
+          {selectedGoal.id === 3 && (
+            <FormField
+              label="Loan Amount"
+              type="text"
+              value={loanAmount}
+              onChange={(e) => setLoanAmount(formatNumber(e.target.value))}
+              showLabelAfterValue
+              onBlur={(e) => toggleDebtAmount()}
+              suffixLabel="Loan Amount"
+              error={showError("LoanAmount", loanAmount)}
+            />
+          )}
+
+          {showDebtAmount && <FormField
+            label="Debt Amount"
+            type="text"
+            value={debtAmount}
+            onChange={(e) => setDebtAmount(formatNumber(e.target.value))}
+            showLabelAfterValue
+            suffixLabel="Debt Amount"
+            error={showError("LoanAmount", loanAmount)}
+          />}
+          
 
           <FormField
             label="First name"

@@ -2,6 +2,7 @@ import axios from "axios";
 import type { AppFormOptions } from "../types/dto/appFormOptionsDTO";
 import type { CreditApplicationSubmitDTO } from "../types/dto/creditApplicationSubmitDTO";
 import type { ApiResponseDTO } from "../types/dto/apiResponseDTO";
+import { ErrorMessage } from "../components/ErrorMessage/ErrorMessage";
 
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "https://localhost:7039";
@@ -23,12 +24,12 @@ export const creditApplicationService = {
 
   async submitApplication(data: CreditApplicationSubmitDTO): Promise<void> {
     try {
-        await axios.post(
+      await axios.post(
         `${API_BASE_URL}/api/CcAppForm/submit-cc-app-form`,
         data
       );
-
-      
-    } catch (error) {}
+    } catch (error) {
+      throw new Error();
+    }
   },
 };
