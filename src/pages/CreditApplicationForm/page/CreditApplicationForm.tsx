@@ -33,7 +33,9 @@ export default function CreditApplicationForm() {
   const [isFailure, setIsFailure] = useState<boolean>(false);
   const [loanAmount, setLoanAmount] = useState<string>("");
   const [debtAmount, setDebtAmount] = useState<string>("");
-  const [showDebtAmount, setShowDebtAmount] = useState<boolean>(false);
+
+  const selectedGoalsToShowLoanAndDebtAmount: number[] = [1, 2, 3, 4, 5];
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -77,10 +79,6 @@ export default function CreditApplicationForm() {
 
   const showError = (field: string, value: any) => {
     return submitted && !value;
-  };
-
-  const toggleDebtAmount = () => {
-    if (loanAmount !== "" && selectedGoal.id == 3) setShowDebtAmount(true);
   };
 
   // if (isLoading) {
@@ -165,29 +163,30 @@ export default function CreditApplicationForm() {
             />
           )}
 
-          {selectedGoal.id === 3 && (
+          {selectedGoalsToShowLoanAndDebtAmount.includes(selectedGoal.id) && (
             <FormField
               label="Loan Amount"
               type="text"
               value={loanAmount}
               onChange={(e) => setLoanAmount(formatNumber(e.target.value))}
               showLabelAfterValue
-              onBlur={(e) => toggleDebtAmount()}
               suffixLabel="Loan Amount"
               error={showError("LoanAmount", loanAmount)}
             />
           )}
 
-          {showDebtAmount && <FormField
-            label="Debt Amount"
-            type="text"
-            value={debtAmount}
-            onChange={(e) => setDebtAmount(formatNumber(e.target.value))}
-            showLabelAfterValue
-            suffixLabel="Debt Amount"
-            error={showError("LoanAmount", loanAmount)}
-          />}
-          
+          {selectedGoalsToShowLoanAndDebtAmount.includes(selectedGoal.id) &&
+            loanAmount != "" && (
+              <FormField
+                label="Debt Amount"
+                type="text"
+                value={debtAmount}
+                onChange={(e) => setDebtAmount(formatNumber(e.target.value))}
+                showLabelAfterValue
+                suffixLabel="Debt Amount"
+                error={showError("LoanAmount", loanAmount)}
+              />
+            )}
 
           <FormField
             label="First name"
