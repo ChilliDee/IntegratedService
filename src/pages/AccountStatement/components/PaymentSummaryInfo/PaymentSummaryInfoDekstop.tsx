@@ -1,19 +1,12 @@
 import React from "react";
-import { formatCurrency } from "../utilities/formatters";
-import { MoneyIcon } from "./icons/MoneyIcon";
-import { CalendarIcon } from "./icons/CalendarIcon";
+import { formatCurrency } from "../../utilities/formatters";
+import { MoneyIcon } from "../icons/MoneyIcon";
+import { CalendarIcon } from "../icons/CalendarIcon";
+import { AccountStatementBaseData } from "../../types/dto/accountStatementBaseData";
 
-interface PaymentSummaryInfoProps {
-  currentPayment: number;
-  paymentFrequency: string;
-  estimatedCompletion: string;
-}
-
-export const PaymentSummaryInfo: React.FC<PaymentSummaryInfoProps> = ({
-  currentPayment,
-  paymentFrequency,
-  estimatedCompletion,
-}) => (
+export const PaymentSummaryInfoDesktop = (
+  baseData: AccountStatementBaseData
+) => (
   <div className="bg-[#09365B] text-white p-4 rounded-2xl">
     <div className="grid grid-cols-2 gap-8">
       <div className="flex items-center justify-center space-x-3">
@@ -23,7 +16,8 @@ export const PaymentSummaryInfo: React.FC<PaymentSummaryInfoProps> = ({
         <div className="flex flex-col">
           <p className="text-white/80 text-sm">Current Payment</p>
           <p className="text-2xl font-bold">
-            {formatCurrency(currentPayment)} {paymentFrequency}
+            {formatCurrency(baseData.paymentsToJbAmount)}{" "}
+            {baseData.paymentsToJbFrequency}
           </p>
         </div>
       </div>
@@ -34,7 +28,9 @@ export const PaymentSummaryInfo: React.FC<PaymentSummaryInfoProps> = ({
         </div>
         <div className="flex flex-col">
           <p className="text-white/80 text-sm">Estimated Completion</p>
-          <p className="text-2xl font-bold">{estimatedCompletion}</p>
+          <p className="text-2xl font-bold">
+            {baseData.estimatedCompletionDate}
+          </p>
         </div>
       </div>
     </div>

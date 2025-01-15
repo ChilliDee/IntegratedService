@@ -1,4 +1,6 @@
-export const formatCurrency = (amount: number): string => {
+export const formatCurrency = (amount: number | undefined): string => {
+  if (amount == undefined) return "";
+
   return new Intl.NumberFormat("en-AU", {
     style: "currency",
     currency: "AUD",

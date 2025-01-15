@@ -43,3 +43,4 @@ export interface Transaction {
   balance: number | null;
   isHistoricalEvent?: boolean;
 }
+

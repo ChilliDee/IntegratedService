@@ -1,32 +1,42 @@
 import React from "react";
-import { Header } from "../components/Header";
-import { DebtProgress } from "../components/DebtProgress";
-import { TransactionTable } from "../components/TransactionTable";
-import { CreditorArrangements } from "../components/CreditorArrangements";
 import { Footer } from "../components/Footer";
-import { demoData } from "../data/mockData";
+import { useAccountStatementData } from "../hooks/useAccountStatementData";
+import { LoadingSpinner } from "../components/LoadingSpinner";
+import styles from "./AccountStatement.module.css";
+import { CreditorArrangementsResponsive } from "../components/CreditorArrangements/CreditorArrangementsResponsive";
+import { HeaderResponsive } from "../components/Header/HeaderResponsive";
+import { DebtProgressResponsive } from "../components/DebtProgress/DebtProgressResponsive";
+import { TransactionTableResponsive } from "../components/TransactionTable/TransactionTableResponsive";
 
 const AccountStatement: React.FC = () => {
-  const creditorCount = demoData.creditorArrangements.filter(
-    (arr) => !arr.creditor.includes("Management Fee")
-  ).length;
+  const {
+    data: accountStatementData,
+    isLoading,
+    isError,
+    isSuccess,
+  } = useAccountStatementData();
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] p-4">
-      <div className="max-w-6xl mx-auto space-y-3">
-        <Header
-          clientInfo={demoData.clientInfo}
-          paymentSummary={demoData.paymentSummary}
-        />
-        <DebtProgress
-          summary={demoData.debtSummary}
-          paymentSummary={demoData.paymentSummary}
-          creditorCount={creditorCount}
-        />
-        <CreditorArrangements arrangements={demoData.creditorArrangements} />
-        <TransactionTable transactions={demoData.transactions} />
-        <Footer />
-      </div>
+    <div className={`${styles.backgroundColor}`}>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : isError ? (
+        <h1>Error</h1>
+      ) : (
+        isSuccess && (
+          <div className="puppeteer-capture p-4">
+            <div className="max-w-6xl mx-auto space-y-3">
+              <HeaderResponsive {...accountStatementData} />
+              <DebtProgressResponsive {...accountStatementData} />
+              <CreditorArrangementsResponsive {...accountStatementData} />
+              <TransactionTableResponsive
+                {...accountStatementData.transactionData}
+              />
+              <Footer />
+            </div>
+          </div>
+        )
+      )}
     </div>
   );
 };

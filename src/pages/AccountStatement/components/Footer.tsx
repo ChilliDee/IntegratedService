@@ -1,24 +1,41 @@
-import React from 'react';
+import React from "react";
 
 export const Footer: React.FC = () => (
   <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
     <div className="p-8 text-sm text-[#09365B]/80">
-      <h4 className="text-lg font-bold text-[#09365B] mb-6">Disclaimer for Account Statement</h4>
-      
+      <h4 className="text-lg font-bold text-[#09365B] mb-6">
+        Disclaimer for Account Statement
+      </h4>
+
       <div className="space-y-6">
         <div>
-          <h5 className="font-semibold mb-2">1. Figures Based on Creditor Information</h5>
+          <h5 className="font-semibold mb-2">
+            1. Figures Based on Creditor Information
+          </h5>
           <ul className="list-disc pl-4 space-y-1">
-            <li>The figures presented in this statement are based on information previously provided to us by your creditors.</li>
-            <li>These figures may be outdated as creditor systems do not always reflect an accurate balance due, especially when alternative payment arrangements are in place.</li>
+            <li>
+              The figures presented in this statement are based on information
+              previously provided to us by your creditors.
+            </li>
+            <li>
+              These figures may be outdated as creditor systems do not always
+              reflect an accurate balance due, especially when alternative
+              payment arrangements are in place.
+            </li>
           </ul>
         </div>
 
         <div>
           <h5 className="font-semibold mb-2">2. Arrangement Variability</h5>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Over the lifetime of a debt, there may be numerous arrangements made, and amounts paid to each creditor may vary.</li>
-            <li>Payment amounts are not consistent month to month and may change due to various factors.</li>
+            <li>
+              Over the lifetime of a debt, there may be numerous arrangements
+              made, and amounts paid to each creditor may vary.
+            </li>
+            <li>
+              Payment amounts are not consistent month to month and may change
+              due to various factors.
+            </li>
           </ul>
         </div>
       </div>

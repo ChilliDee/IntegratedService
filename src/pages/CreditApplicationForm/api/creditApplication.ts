@@ -1,11 +1,8 @@
 import axios from "axios";
 import type { AppFormOptions } from "../types/dto/appFormOptionsDTO";
 import type { CreditApplicationSubmitDTO } from "../types/dto/creditApplicationSubmitDTO";
-import type { ApiResponseDTO } from "../types/dto/apiResponseDTO";
-import { ErrorMessage } from "../components/ErrorMessage/ErrorMessage";
 
-const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "https://localhost:7039";
+const API_BASE_URL = import.meta.env.VITE_CC_APP_FORM_API;
 
 export const creditApplicationService = {
   async getFormOptions(): Promise<AppFormOptions> {

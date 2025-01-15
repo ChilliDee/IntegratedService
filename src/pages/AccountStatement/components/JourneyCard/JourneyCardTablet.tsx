@@ -1,18 +1,8 @@
-import React from "react";
-import { formatCurrency } from "../utilities/formatters";
-import { MoneyIcon } from "./icons/MoneyIcon";
+import { formatCurrency } from "../../utilities/formatters";
+import { MoneyIcon } from "../icons/MoneyIcon";
+import { JourneyCardProps } from "../../types/props/journeyCardProps";
 
-interface JourneyCardProps {
-  title: string;
-  amount: number;
-  color: string;
-  textColor?: string;
-  iconBgColor?: string;
-  iconColor?: string;
-  footer?: React.ReactNode;
-}
-
-export const JourneyCard: React.FC<JourneyCardProps> = ({
+export const JourneyCardTablet = ({
   title,
   amount,
   color,
@@ -20,14 +10,14 @@ export const JourneyCard: React.FC<JourneyCardProps> = ({
   iconBgColor = "bg-white/20",
   iconColor = "",
   footer,
-}) => (
+}: JourneyCardProps) => (
   <div className={`${color} ${textColor} rounded-xl p-4`}>
-    <div className="flex items-center justify-center space-x-2 mb-2">
+    <div className="flex justify-center">
       <div className={`${iconBgColor} p-1.5 rounded-lg`}>
         <MoneyIcon className={`w-4 h-4 ${iconColor}`} />
       </div>
-      <h4 className="text-lg font-bold">{title}</h4>
     </div>
+    <h4 className="text-md text-center font-bold">{title}</h4>
     <p className="text-2xl font-bold text-center mb-2">
       {formatCurrency(amount)}
     </p>
