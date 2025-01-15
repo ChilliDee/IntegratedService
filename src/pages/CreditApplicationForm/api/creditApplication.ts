@@ -8,7 +8,7 @@ export const creditApplicationService = {
   async getFormOptions(): Promise<AppFormOptions> {
     try {
       const response = await axios.get<AppFormOptions>(
-        `${API_BASE_URL}/api/CcAppForm/options`
+        `api.webappform.com.au/api/CcAppForm/options`
       );
       return response.data;
     } catch (error) {
