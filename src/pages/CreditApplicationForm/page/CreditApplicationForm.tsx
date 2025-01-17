@@ -65,8 +65,8 @@ export default function CreditApplicationForm() {
   };
 
   const isFormValid = () => {
-    if (!selectedHelp) return false;
-    if (!selectedGoal) return false;
+    if (selectedHelp.id == 0) return false;
+    if (selectedGoal.id == 0) return false;
     if (selectedGoal.id === 7 && !otherGoal) return false;
     if (!firstName) return false;
     if (!email) return false;
@@ -76,8 +76,12 @@ export default function CreditApplicationForm() {
     return true;
   };
 
-  const showError = (field: string, value: any) => {
+  const showGenericError = (field: string, value: any) => {
     return submitted && !value;
+  };
+
+  const showOptionError = (field: string, value: AppFormOption) => {
+    return submitted && value.id == 0;
   };
 
   // if (isLoading) {
@@ -136,7 +140,7 @@ export default function CreditApplicationForm() {
               options={formOptions?.primaryConcernOptions || []}
               value={selectedHelp}
               onChange={setSelectedHelp}
-              error={showError("help", selectedHelp)}
+              error={showOptionError("Help", selectedHelp)}
             />
           </div>
 
@@ -146,7 +150,7 @@ export default function CreditApplicationForm() {
               options={formOptions?.goalsAfterCreditRepairOptions || []}
               value={selectedGoal}
               onChange={setSelectedGoal}
-              error={showError("goal", selectedGoal)}
+              error={showOptionError("goal", selectedGoal)}
             />
           </div>
 
@@ -158,7 +162,7 @@ export default function CreditApplicationForm() {
               onChange={(e) => setOtherGoal(e.target.value)}
               showLabelAfterValue
               suffixLabel="Goal"
-              error={showError("otherGoal", otherGoal)}
+              error={showGenericError("otherGoal", otherGoal)}
             />
           )}
 
@@ -170,7 +174,7 @@ export default function CreditApplicationForm() {
               onChange={(e) => setLoanAmount(formatNumber(e.target.value))}
               showLabelAfterValue
               suffixLabel="Loan Amount"
-              error={showError("LoanAmount", loanAmount)}
+              error={showGenericError("LoanAmount", loanAmount)}
             />
           )}
 
@@ -183,7 +187,7 @@ export default function CreditApplicationForm() {
                 onChange={(e) => setDebtAmount(formatNumber(e.target.value))}
                 showLabelAfterValue
                 suffixLabel="Debt Amount"
-                error={showError("LoanAmount", loanAmount)}
+                error={showGenericError("LoanAmount", loanAmount)}
               />
             )}
 
@@ -194,7 +198,7 @@ export default function CreditApplicationForm() {
             onChange={(e) => setFirstName(e.target.value)}
             showLabelAfterValue
             suffixLabel="First Name"
-            error={showError("firstName", firstName)}
+            error={showGenericError("firstName", firstName)}
           />
 
           <FormField
@@ -204,7 +208,7 @@ export default function CreditApplicationForm() {
             onChange={(e) => setEmail(e.target.value)}
             showLabelAfterValue
             suffixLabel="Email"
-            error={showError("email", email)}
+            error={showGenericError("email", email)}
           />
 
           <FormField
@@ -214,7 +218,7 @@ export default function CreditApplicationForm() {
             onChange={(e) => setMobile(e.target.value)}
             showLabelAfterValue
             suffixLabel="Mobile"
-            error={showError("mobile", mobile)}
+            error={showGenericError("mobile", mobile)}
           />
 
           <FormField
@@ -224,7 +228,7 @@ export default function CreditApplicationForm() {
             onChange={(e) => setPostCode(e.target.value)}
             showLabelAfterValue
             suffixLabel="Postcode"
-            error={showError("postCode", postCode)}
+            error={showGenericError("postCode", postCode)}
           />
 
           <SubmitButton isSubmitting={isSubmitting} />
