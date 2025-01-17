@@ -157,7 +157,7 @@ export default function CreditApplicationForm() {
               value={otherGoal}
               onChange={(e) => setOtherGoal(e.target.value)}
               showLabelAfterValue
-              suffixLabel="goal"
+              suffixLabel="Goal"
               error={showError("otherGoal", otherGoal)}
             />
           )}
@@ -169,7 +169,7 @@ export default function CreditApplicationForm() {
               value={loanAmount}
               onChange={(e) => setLoanAmount(formatNumber(e.target.value))}
               showLabelAfterValue
-              suffixLabel="Loan amount"
+              suffixLabel="Loan Amount"
               error={showError("LoanAmount", loanAmount)}
             />
           )}
@@ -188,12 +188,12 @@ export default function CreditApplicationForm() {
             )}
 
           <FormField
-            label="First name"
+            label="First Name"
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             showLabelAfterValue
-            suffixLabel="first name"
+            suffixLabel="First Name"
             error={showError("firstName", firstName)}
           />
 
@@ -203,7 +203,7 @@ export default function CreditApplicationForm() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             showLabelAfterValue
-            suffixLabel="email"
+            suffixLabel="Email"
             error={showError("email", email)}
           />
 
@@ -213,17 +213,17 @@ export default function CreditApplicationForm() {
             value={mobile}
             onChange={(e) => setMobile(e.target.value)}
             showLabelAfterValue
-            suffixLabel="mobile"
+            suffixLabel="Mobile"
             error={showError("mobile", mobile)}
           />
 
           <FormField
-            label="Post Code"
+            label="Postcode"
             type="text"
             value={postCode}
             onChange={(e) => setPostCode(e.target.value)}
             showLabelAfterValue
-            suffixLabel="postcode"
+            suffixLabel="Postcode"
             error={showError("postCode", postCode)}
           />
 
