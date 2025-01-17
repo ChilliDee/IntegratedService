@@ -36,7 +36,6 @@ export default function CreditApplicationForm() {
 
   const selectedGoalsToShowLoanAndDebtAmount: number[] = [1, 2, 3, 4, 5];
 
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
@@ -165,12 +164,12 @@ export default function CreditApplicationForm() {
 
           {selectedGoalsToShowLoanAndDebtAmount.includes(selectedGoal.id) && (
             <FormField
-              label="Loan Amount"
+              label="How much do you want to borrow?"
               type="text"
               value={loanAmount}
               onChange={(e) => setLoanAmount(formatNumber(e.target.value))}
               showLabelAfterValue
-              suffixLabel="Loan Amount"
+              suffixLabel="Loan amount"
               error={showError("LoanAmount", loanAmount)}
             />
           )}
@@ -178,7 +177,7 @@ export default function CreditApplicationForm() {
           {selectedGoalsToShowLoanAndDebtAmount.includes(selectedGoal.id) &&
             loanAmount != "" && (
               <FormField
-                label="Debt Amount"
+                label="How much debt do you have?"
                 type="text"
                 value={debtAmount}
                 onChange={(e) => setDebtAmount(formatNumber(e.target.value))}
