@@ -9,11 +9,15 @@ import { SubmitButton } from "../components/SubmitButton/SubmitButton";
 import { ErrorMessage } from "../components/ErrorMessage/ErrorMessage";
 import { SuccessMessage } from "../components/SuccessMessage/SuccessMessage";
 import { formatNumber } from "../utilities/formatNumber";
+import ChildIframeResizer from "../../../IframeScripts/childIframeScript";
 
 export default function CreditApplicationForm() {
   const { data: formOptions } = useFormOptions();
   const { mutate: submitApplication, isLoading: isSubmitting } =
     useSubmitApplication();
+
+  var iframeResizer = new ChildIframeResizer();
+  iframeResizer.subscribeToDimensionResize();
 
   const [selectedHelp, setSelectedHelp] = useState<AppFormOption>({
     id: 0,
