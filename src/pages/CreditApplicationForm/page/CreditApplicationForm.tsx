@@ -152,7 +152,7 @@ export default function CreditApplicationForm() {
           <div>
             <Dropdown
               label="What is your goal after credit repair?"
-              options={formOptions?.goalsAfterCreditRepairOptions || []}
+              options={formOptions?.goalsAfterCreditRepair || []}
               value={selectedGoal}
               onChange={setSelectedGoal}
               error={showOptionError(selectedGoal)}

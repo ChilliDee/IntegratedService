@@ -1,6 +1,6 @@
 import type { AppFormOption } from "./appFormOptionDTO";
 
 export interface AppFormOptions {
-  goalsAfterCreditRepairOptions: AppFormOption[];
+  goalsAfterCreditRepair: AppFormOption[];
   primaryConcernOptions: AppFormOption[];
 }
