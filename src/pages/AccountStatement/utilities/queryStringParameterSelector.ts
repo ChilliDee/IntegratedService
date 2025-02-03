@@ -17,7 +17,7 @@ export class QueryStringParameterSelector {
     const queryParams = useQueryParams();
     const isPreview = queryParams.get("isPreview");
 
-    if (isPreview != null && isPreview == "1") {
+    if (isPreview != null && isPreview == "True") {
       this.isPreview = true;
     }
   }

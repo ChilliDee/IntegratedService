@@ -7,6 +7,7 @@ import { CreditorArrangementsResponsive } from "../components/CreditorArrangemen
 import { HeaderResponsive } from "../components/Header/HeaderResponsive";
 import { DebtProgressResponsive } from "../components/DebtProgress/DebtProgressResponsive";
 import { TransactionTableResponsive } from "../components/TransactionTable/TransactionTableResponsive";
+import { Error } from "../components/Error/Error";
 
 const AccountStatement: React.FC = () => {
   const {
@@ -14,6 +15,7 @@ const AccountStatement: React.FC = () => {
     isLoading,
     isError,
     isSuccess,
+    error,
   } = useAccountStatementData();
 
   return (
@@ -21,8 +23,9 @@ const AccountStatement: React.FC = () => {
       {isLoading ? (
         <LoadingSpinner />
       ) : isError ? (
-        <h1>Error</h1>
+        <Error error={error} />
       ) : (
+        // <div></div>
         isSuccess && (
           <div className="puppeteer-capture p-4">
             <div className="max-w-6xl mx-auto space-y-3">

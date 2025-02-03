@@ -1,4 +1,4 @@
-import { AccontStatementTransactionData } from "./accountStatementTransactionData";
+import { AccountStatementTransactionData } from "./accountStatementTransactionData";
 import { AccountStatementCreditorData } from "./accountStatementCreditorData";
 
 export interface AccountStatementBaseData {
@@ -15,5 +15,5 @@ export interface AccountStatementBaseData {
   managementFeePercentage: number;
   monthlyAdminFee: number | undefined;
   creditorData: Array<AccountStatementCreditorData>;
-  transactionData: Array<AccontStatementTransactionData>;
+  transactionData: Array<AccountStatementTransactionData>;
 }
