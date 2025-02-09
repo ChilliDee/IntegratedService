@@ -1,11 +1,10 @@
 .container {
   min-height: 100vh;
-  background-image: linear-gradient(to bottom right, rgb(243 244 246), rgb(229 231 235));
   padding: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Como', sans-serif;
+  font-family: "Como", sans-serif;
 }
 
 .formContainer {
