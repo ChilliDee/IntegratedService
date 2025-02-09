@@ -1,10 +1,10 @@
 .container {
-  min-height: 100vh;
   padding: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: "Como", sans-serif;
+  padding-bottom: 3.5rem;
 }
 
 .formContainer {
