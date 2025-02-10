@@ -16,8 +16,6 @@ export default function CreditApplicationForm() {
   const { mutate: submitApplication, isLoading: isSubmitting } =
     useSubmitApplication();
 
-
-
   const [selectedHelp, setSelectedHelp] = useState<AppFormOption>({
     id: 0,
     name: "",
@@ -71,9 +69,7 @@ export default function CreditApplicationForm() {
     var iframeResizer = new ChildIframeElementResizer("cc-app-form-container");
     iframeResizer.instantiateResizeObserver();
     iframeResizer.observeResizeObserver();
-
-
-  }, [])
+  }, []);
 
   const isFormValid = () => {
     if (selectedHelp.id == 0) return false;
@@ -136,115 +132,117 @@ export default function CreditApplicationForm() {
   }
 
   return (
-    <div className={styles.container} id="cc-app-form-container">
-      <div className={styles.formContainer}>
-        <div className={styles.header}>
-          <h1 className={styles.title}>Can't get a loan or credit card?</h1>
-          <h2 className={styles.subtitle}>
-            We provide credit repair solutions
-          </h2>
-        </div>
-
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <div>
-            <Dropdown
-              label="How can we help?"
-              options={formOptions?.primaryConcernOptions || []}
-              value={selectedHelp}
-              onChange={setSelectedHelp}
-              error={showOptionError(selectedHelp)}
-            />
+    <div id="cc-app-form-container">
+      <div className={styles.container}>
+        <div className={styles.formContainer}>
+          <div className={styles.header}>
+            <h1 className={styles.title}>Can't get a loan or credit card?</h1>
+            <h2 className={styles.subtitle}>
+              We provide credit repair solutions
+            </h2>
           </div>
 
-          <div>
-            <Dropdown
-              label="What is your goal after credit repair?"
-              options={formOptions?.goalsAfterCreditRepair || []}
-              value={selectedGoal}
-              onChange={setSelectedGoal}
-              error={showOptionError(selectedGoal)}
-            />
-          </div>
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <div>
+              <Dropdown
+                label="How can we help?"
+                options={formOptions?.primaryConcernOptions || []}
+                value={selectedHelp}
+                onChange={setSelectedHelp}
+                error={showOptionError(selectedHelp)}
+              />
+            </div>
 
-          {selectedGoal.id === 7 && (
-            <FormField
-              label="Please specify your goal"
-              type="text"
-              value={otherGoal}
-              onChange={(e) => setOtherGoal(e.target.value)}
-              showLabelAfterValue
-              suffixLabel="Goal"
-              error={showGenericError(otherGoal)}
-            />
-          )}
+            <div>
+              <Dropdown
+                label="What is your goal after credit repair?"
+                options={formOptions?.goalsAfterCreditRepair || []}
+                value={selectedGoal}
+                onChange={setSelectedGoal}
+                error={showOptionError(selectedGoal)}
+              />
+            </div>
 
-          {selectedGoalsToShowLoanAndDebtAmount.includes(selectedGoal.id) && (
-            <FormField
-              label="How much do you want to borrow?"
-              type="text"
-              value={loanAmount}
-              onChange={(e) => setLoanAmount(formatNumber(e.target.value))}
-              showLabelAfterValue
-              suffixLabel="Loan Amount"
-              error={showGenericError(loanAmount)}
-            />
-          )}
-
-          {selectedGoalsToShowLoanAndDebtAmount.includes(selectedGoal.id) &&
-            loanAmount != "" && (
+            {selectedGoal.id === 7 && (
               <FormField
-                label="How much debt do you have?"
+                label="Please specify your goal"
                 type="text"
-                value={debtAmount}
-                onChange={(e) => setDebtAmount(formatNumber(e.target.value))}
+                value={otherGoal}
+                onChange={(e) => setOtherGoal(e.target.value)}
                 showLabelAfterValue
-                suffixLabel="Debt Amount"
-                error={showGenericError(debtAmount)}
+                suffixLabel="Goal"
+                error={showGenericError(otherGoal)}
               />
             )}
 
-          <FormField
-            label="First Name"
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            showLabelAfterValue
-            suffixLabel="First Name"
-            error={showGenericError(firstName)}
-          />
+            {selectedGoalsToShowLoanAndDebtAmount.includes(selectedGoal.id) && (
+              <FormField
+                label="How much do you want to borrow?"
+                type="text"
+                value={loanAmount}
+                onChange={(e) => setLoanAmount(formatNumber(e.target.value))}
+                showLabelAfterValue
+                suffixLabel="Loan Amount"
+                error={showGenericError(loanAmount)}
+              />
+            )}
 
-          <FormField
-            label="Email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            showLabelAfterValue
-            suffixLabel="Email"
-            error={showGenericError(email)}
-          />
+            {selectedGoalsToShowLoanAndDebtAmount.includes(selectedGoal.id) &&
+              loanAmount != "" && (
+                <FormField
+                  label="How much debt do you have?"
+                  type="text"
+                  value={debtAmount}
+                  onChange={(e) => setDebtAmount(formatNumber(e.target.value))}
+                  showLabelAfterValue
+                  suffixLabel="Debt Amount"
+                  error={showGenericError(debtAmount)}
+                />
+              )}
 
-          <FormField
-            label="Mobile"
-            type="tel"
-            value={mobile}
-            onChange={(e) => setMobile(e.target.value)}
-            showLabelAfterValue
-            suffixLabel="Mobile"
-            error={showGenericError(mobile)}
-          />
+            <FormField
+              label="First Name"
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              showLabelAfterValue
+              suffixLabel="First Name"
+              error={showGenericError(firstName)}
+            />
 
-          <FormField
-            label="Postcode"
-            type="text"
-            value={postCode}
-            onChange={(e) => setPostCode(e.target.value)}
-            showLabelAfterValue
-            suffixLabel="Postcode"
-            error={showGenericError(postCode)}
-          />
+            <FormField
+              label="Email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              showLabelAfterValue
+              suffixLabel="Email"
+              error={showGenericError(email)}
+            />
 
-          <SubmitButton isSubmitting={isSubmitting} />
-        </form>
+            <FormField
+              label="Mobile"
+              type="tel"
+              value={mobile}
+              onChange={(e) => setMobile(e.target.value)}
+              showLabelAfterValue
+              suffixLabel="Mobile"
+              error={showGenericError(mobile)}
+            />
+
+            <FormField
+              label="Postcode"
+              type="text"
+              value={postCode}
+              onChange={(e) => setPostCode(e.target.value)}
+              showLabelAfterValue
+              suffixLabel="Postcode"
+              error={showGenericError(postCode)}
+            />
+
+            <SubmitButton isSubmitting={isSubmitting} />
+          </form>
+        </div>
       </div>
     </div>
   );
