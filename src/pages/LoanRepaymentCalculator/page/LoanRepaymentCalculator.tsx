@@ -3,14 +3,14 @@ import LoanForm from "../components/LoanForm/LoanForm";
 import LoanResults from "../components/LoanResults/LoanResults";
 import { calculateLoanDetails } from "../utils/calculations";
 import styles from "./LoanRepaymentCalculator.module.css";
-import ChildIframeResizer from "../../../IframeScripts/childIframeScript";
+import ChildIframeDocumentResizer from "../../../IframeScripts/childIframeDocumentScript";
 
 export default function LoanRepaymentCalculator() {
   const [loanAmount, setLoanAmount] = useState(10000);
   const [interestRate, setInterestRate] = useState(10);
   const [loanTerm, setLoanTerm] = useState(5);
   const [extraPayment, setExtraPayment] = useState(0);
-  var iframeResizer = new ChildIframeResizer();
+  var iframeResizer = new ChildIframeDocumentResizer();
   iframeResizer.subscribeToDimensionResize();
 
   const loanDetails = useMemo(

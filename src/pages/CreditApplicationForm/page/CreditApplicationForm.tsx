@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dropdown } from "../components/Dropdown/Dropdown";
 import { FormField } from "../components/FormField/FormField";
 import { useFormOptions } from "../hooks/useFormOptions";
@@ -9,15 +9,14 @@ import { SubmitButton } from "../components/SubmitButton/SubmitButton";
 import { ErrorMessage } from "../components/ErrorMessage/ErrorMessage";
 import { SuccessMessage } from "../components/SuccessMessage/SuccessMessage";
 import { formatNumber } from "../utilities/formatNumber";
-import ChildIframeResizer from "../../../IframeScripts/childIframeScript";
+import ChildIframeElementResizer from "../../../IframeScripts/childframeElementScript";
 
 export default function CreditApplicationForm() {
   const { data: formOptions } = useFormOptions();
   const { mutate: submitApplication, isLoading: isSubmitting } =
     useSubmitApplication();
 
-  var iframeResizer = new ChildIframeResizer();
-  iframeResizer.subscribeToDimensionResize();
+
 
   const [selectedHelp, setSelectedHelp] = useState<AppFormOption>({
     id: 0,
@@ -67,6 +66,14 @@ export default function CreditApplicationForm() {
       );
     }
   };
+
+  useEffect(() => {
+    var iframeResizer = new ChildIframeElementResizer("cc-app-form-container");
+    iframeResizer.instantiateResizeObserver();
+    iframeResizer.observeResizeObserver();
+
+
+  }, [])
 
   const isFormValid = () => {
     if (selectedHelp.id == 0) return false;
@@ -129,7 +136,7 @@ export default function CreditApplicationForm() {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id="cc-app-form-container">
       <div className={styles.formContainer}>
         <div className={styles.header}>
           <h1 className={styles.title}>Can't get a loan or credit card?</h1>

@@ -3,7 +3,7 @@ interface ApplicationDimensions {
   height: number | undefined;
 }
 
-class ChildIframeResizer {
+class ChildIframeDocumentResizer {
   public appContainer: HTMLElement | null;
 
   constructor() {
@@ -47,4 +47,4 @@ class ChildIframeResizer {
   }
 }
 
-export default ChildIframeResizer;
+export default ChildIframeDocumentResizer;
